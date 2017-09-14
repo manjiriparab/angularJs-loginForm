@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+
+
+ 
+<p>Sign in:</p>
+<form name="form">
+
+
+<!-- Email input field with validation -->
+
+<p>Email id : 
+<input type="email"  name="email" ng-model="email" placeholder="Enter email here" REQUIRED>
+<span style="color:red" ng-show="form.email.$dirty && form.email.$invalid">
+<span ng-show="form.email.$error.email">Invalid email address.</span>
+<span ng-show="form.email.$error.required">Please enter email id</span>
+</span>
+</p>
+
+<!-- Password input field with validation -->
+
+<p>Password : <input type="password" ng-model="password" name="password" placeholder="Enter password here" required>
+<span style="color:red" ng-show="form.password.$dirty && form.password.$invalid">
+<span ng-show="form.password.$error.required">Please enter password</span>
+</span>
+</p>
+
+<!-- Disable submit button if validation failed -->
+
+<p>
+<input type="submit"
+ng-disabled="form.password.$error.required ||  form.email.$error.required || form.email.$error.email">
+</p>
+</form>
+
+<script>
+var app = angular.module("myApp", []);
+app.controller("myCtrl", function($scope) {
+    $scope.invalid_email = {
+        "color" : "red",
+    }
+});
+</script>
+
+</body>
+</html>
